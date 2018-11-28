@@ -1,0 +1,61 @@
+<div class="header">
+	<div class="max-box" style="overflow: inherit;">
+		<div class="logo">
+			<a href="/" class="a-block">
+				<img src="./images/logo.png" />
+			</a>
+		</div>
+		<div class="nav">
+			<ul>
+				<li class="nav-a1">
+					<a href="/" title="异原创" class="nav-a {% if active == 'index' %}active{% endif %}">
+						<p><span>异原创</span></p>
+					</a>
+				</li>
+				<li class="nav-a2">
+					<a href="/designer" title="设计师" class="nav-a {% if active == 'designer' %}active{% endif %}">
+						<p>设计师</p>
+					</a>
+				</li>
+				<li class="nav-a3">
+					{% set labels = labels %} {% for item in labels %} {% if loop.first %}
+					<a href="/list?Id={{item.id}}" title="资讯" class="nav-a {% if active == 'list' %}active{% endif %} {% if active == 'details' %}active{% endif %}">
+						<p>资讯</p>
+					</a>{% endif %} {% endfor %}
+					<div class="nav-list">
+						{% set labels = labels %} {% for item in labels %}
+						<a href="/list?Id={{item.id}}" title="{{ item.labelName }}">{{ item.labelName }}</a>
+						{% endfor %}
+					</div>
+				</li>
+				<li class="nav-a4">
+					<a href="/about" title="关于我们" class="nav-a {% if active == 'about' %}active{% endif %}">
+						<p>关于我们</p>
+					</a>
+					<div class="nav-list">
+						<a href="/about" title="异的价值观">"异"价值观</a>
+						<a href="/about?Id=2" title="平台故事">平台故事</a>
+						<a href="/about?Id=3" title="加入我们">加入我们</a>
+						<a href="/about?Id=4" title="联系我们">联系我们</a>
+					</div>
+				</li>
+				<li class="nav-a5">
+					<a href="/download" title="下载" class="nav-a {% if active == 'download' %}active{% endif %}">
+						<p>下载</p>
+					</a>
+				</li>
+				<li class="nav-a6" onclick="ToForm()">
+					<a title="设计师入驻" class="nav-a">
+						<p>设计师入驻</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="header-button" onclick="Nav()">
+	<span></span>
+	<span></span>
+	<span></span>
+</div>

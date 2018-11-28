@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+{% include "head.html" %}
+
+<body>
+    {% include "header.html" %}
+
+    <div class="main-box list-boxs" style="position: relative;">
+
+        <div class="list-box max-box">
+
+            <div class="list-left">
+                <div class="list-label-list">
+                    {% set label = label %} {% for item in label %}
+                    <div class="labels {% if labelId == item.id %}active{% endif %}" data-id="{{item.id}}" onclick="GetLists({{item.id}},{{ loop.index }})">
+                        <span>{{item.labelName}}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="list-right">
+                <ul>
+                    {% set list = list %} {% for item in list %}
+                    <li>
+
+                        <div class="box">
+                            <a title="{{item.title}}" href="{% if item.url !== '' %}{{item.url}}{% else %}/details?id={{item.id}}{% endif %}" target="_blank">
+                                <div class="time" data-time="{{item.uploadTime}}">
+                                    <span class="date">16</span>
+                                    <span class="year">July - 07</span>
+                                </div>
+                                <div class="img">
+                                    <img src="{{item.cover}}?x-oss-process=image/resize,m_fill,h_200,w_200,limit_0" />
+                                </div>
+                                <div class="text-box">
+                                    <div class="title">{{item.title}}</div>
+                                    <div class="info">{{item.info}}</div>
+                                </div>
+                            </a>
+                            <a class="more" title="{{item.title}}" href="{% if item.url !== '' %}{{item.url}}{% else %}/details?id={{item.id}}{% endif %}" target="_blank"></a>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% include "footer.html" %}
+    <script type="text/javascript">
+        var More = true;
+        var pageSize = 10;
+        var pageNum = 2;
+        var labelId = '{{labelId}}';
+
+        function GetLists(id, index) {
+            More = true;
+            pageNum = 1;
+            $('.labels').removeClass('active');
+            $('.list-label-list .labels').eq(index - 1).addClass('active');
+            $('.list-right ul').html('');
+            GetList(id);
+        }
+
+        function GetList(id) {
+            if (id) {
+                labelId = id;
+            }
+            More = false;
+            $.get('/api/listMore?labelId=' + labelId + '&pageSize=' + pageSize + '&pageNum=' + pageNum + '',
+                function(data, status) {
+                    var list = data.data;
+                    for (var i = 0; i < list.length; i++) {
+                        if (list[i].url == '') {
+                            $(".list-right ul").append('<li><div class="box"><a title="' + list[i].title + '" href="/details?id=' + list[i].id + '" target="_blank"><div class="time" data-time="' + list[i].uploadTime + '" ><span class="date"></span><span class="year"></span></div><div class="img"><img src="' + list[i].cover + '?x-oss-process=image/resize,m_fill,h_200,w_200,limit_0" /></div><div class="text-box"><div class="title">' + list[i].title + '</div><div class="info">' + list[i].info + '</div></div><a class="more" href="/details?id=' + list[i].id + '" target="_blank"></a></div></li>');
+                            $('.list-right ul li').eq($('.list-right ul li').length - 1).delay(i * 200).animate({
+                                marginLeft: "0px"
+                            })
+                        } else {
+                            $(".list-right ul").append('<li><div class="box"><a title="' + list[i].title + '" href="' + list[i].url + '" target="_blank"><div class="time" data-time="' + list[i].uploadTime + '" ><span class="date"></span><span class="year"></span></div><div class="img"><img src="' + list[i].cover + '?x-oss-process=image/resize,m_fill,h_200,w_200,limit_0" /></div><div class="text-box"><div class="title">' + list[i].title + '</div><div class="info">' + list[i].info + '</div></div></a><a class="more" href="' + list[i].url + '" target="_blank"></a></div></li>');
+                            $('.list-right ul li').eq($('.list-right ul li').length - 1).delay(i * 200).animate({
+                                marginLeft: "0px"
+                            })
+                        }
+                    }
+                    if (data.data.length < 5) {
+                        More = false;
+                    } else {
+                        More = true;
+                    }
+                    pageNum = pageNum + 1;
+                    formatDateTime();
+                });
+        }
+
+        $(".list-right").mCustomScrollbar({
+            scrollButtons: {
+                enable: true
+            },
+            callbacks: {
+                whileScrolling: function() {
+                    if (this.mcs.topPct > '95') {
+                        if (More) {
+                            GetList();
+                        } else {
+                            return true;
+                        }
+                    }
+                }
+            }
+        })
+
+        $(".list-left-wap").mCustomScrollbar({
+            scrollButtons: {
+                enable: true
+            },
+            horizontalScroll: true
+        })
+
+        function formatDateTime() {
+            var month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            $(".time").each(function() {
+                var date = new Date();
+                date.setTime($(this).attr('data-time'));
+                var ms = ''
+                var y = date.getFullYear();
+                var m = date.getMonth() + 1;
+                m = m < 10 ? (m) : m;
+                var d = date.getDate();
+                d = d < 10 ? ('0' + d) : d;
+                for (var i = 0; i <= month.length; i++) {
+                    if (m == i.toString()) {
+                        $(this).find('.date').html(d)
+                        $(this).find('.year').html(month[i - 1] + ' - ' + y)
+                    }
+                }
+            });
+        };
+        formatDateTime();
+    </script>
+
+</body>
+
+</html>

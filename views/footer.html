@@ -1,0 +1,228 @@
+<div class="footer">
+    <div class="footer-top">
+        <div class="footer-top-box max-box">
+            <div class="footer-top-li footer-top-1">
+                <div class="phone">
+                    18620937000
+                </div>
+                <div class="time">
+                    服务时间：9:00-18:00
+                </div>
+                <div class="live-button">
+                    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1489599749&site=qq&menu=yes"></a>
+                </div>
+            </div>
+            <div class="footer-top-li footer-top-2">
+                <div class="footer-title title-ioc">
+                    异平台
+                </div>
+                <ul>
+                    <li>
+                        <a href="/about?Id=2" title="异平台的故事">异平台的故事</a>
+                    </li>
+                    <li>
+                        <a href="/designer" title="设计师">设计师</a>
+                    </li>
+                    <li>
+                        <a href="/about" title="关于我们">关于我们</a>
+                    </li>
+                    <li>
+                        <a href="/about?Id=4" title="联系我们">联系我们</a>
+                    </li>
+                    <li>
+                        <a href="/about?Id=3" title="加入我们">加入我们</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-top-li footer-top-3">
+                <div class="footer-title title-ioc">
+                    异平台的评价
+                </div>
+                <div class="footer-text footer-ioc1">
+                    如果异平台能为你做什么，谢谢你告诉我们。
+                </div>
+                <div class="footer-text footer-ioc2">
+                    给异平台写几句精心的评价吧。
+                </div>
+            </div>
+
+            <div class="footer-top-li footer-top-4">
+                <div class="footer-title">
+                    官方公众号
+                </div>
+                <div class="footer-ewm">
+                    <img src="./images/ewm.png" />
+                </div>
+            </div>
+
+            <div class="footer-top-li footer-top-5">
+                <div class="footer-title">
+                    APP下载
+                </div>
+                <div class="footer-app-button ios">
+                    <a target="_blank" href="https://itunes.apple.com/cn/app/%E5%BC%82%E5%8E%9F%E5%88%9B/id1345857458?mt=8">iPhone版下载</a>
+                </div>
+                <div class="footer-app-button android">
+                    <a target="_blank" href="https://www.pgyer.com/4y3p">Android版下载</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer-link">
+        <div class="footer-link-box max-box">
+            {% set foo = footer %} {% for item in foo %}
+            <a href="{{item.linkUrl}}" title="{{ item.linkName }}">{{ item.linkName }}</a> {% endfor %}
+        </div>
+    </div>
+
+    <div class="footer-cop">
+        © 广州东晖信息科技有限公司. All Rights Reserved
+        <a href="http://www.miitbeian.gov.cn" target="_blank">粤ICP备17141615号</a>
+    </div>
+
+</div>
+
+<div class="form-box">
+
+    <div class="form-close" onclick="FormClose()"></div>
+
+    <div class="logo">
+        <img src="./images/form-logo.png" />
+    </div>
+
+    <div class="form-page form-page1">
+        <label class="form-li" for="form-name">
+			<input type="text" name="name" id="form-name" placeholder="姓名/NAME" />
+		</label>
+
+        <label class="form-li" for="form-add">
+			<input type="text" name="add" id="form-add" placeholder="所在地/LOCATION" />
+		</label>
+
+        <label class="form-li" for="form-company">
+			<input type="text" name="company" id="form-company" placeholder="所属公司/COMPANY" />
+		</label>
+
+        <label class="form-li" for="form-email">
+			<input type="text" name="email" id="form-email" placeholder="邮箱E-MAIL" />
+		</label>
+
+        <div class="form-box-button" onclick="formNext()">
+            <span>下一步</span>
+        </div>
+
+    </div>
+
+    <div class="form-page form-page2" style="display: none;">
+
+        <label class="form-li form-radio">
+			<span data-text="86" id="form-areas">中国内地 +86</span>					
+		</label>
+
+        <div class="form-li-radio">
+            <input type="radio" name="form-area" id="area1" value="86" checked="checked" /><label for="area1">中国内地 +86</label>
+            <input type="radio" name="form-area" id="area2" value="81" /><label for="area2">日本  +81</label>
+            <input type="radio" name="form-area" id="area3" value="82" /><label for="area3">韩国  +82</label>
+            <input type="radio" name="form-area" id="area4" value="852" /><label for="area4">香港  +852</label>
+            <input type="radio" name="form-area" id="area5" value="853" /><label for="area5">澳门  +853</label>
+            <input type="radio" name="form-area" id="area6" value="886" /><label for="area6">台湾  +886</label>
+        </div>
+
+        <label class="form-li" for="form-phone">
+			<input type="tel" name="phone" id="form-phone" placeholder="手机/PHONE" />
+		</label>
+
+        <label class="form-li" style="margin-bottom: 0.8em;" for="form-code">
+			<input type="text" name="code" id="form-code" placeholder="验证码/CODE" />
+		</label>
+
+        <div class="yzm">
+            <span class="first" onclick="yzm()">获取验证码</span>
+            <span class="djs">获取验证码</span>
+        </div>
+
+        <label class="form-li form-radio">
+			<span data-text='' id="form-types">类型/TYPE</span>			
+		</label>
+
+        <div class="form-li-radio">
+            <input type="radio" name="form-type" id="type1" value="男装" /><label for="type1">男装</label>
+            <input type="radio" name="form-type" id="type2" value="女装" /><label for="type2">女装</label>
+            <input type="radio" name="form-type" id="type3" value="童装" /><label for="type3">童装</label>
+            <input type="radio" name="form-type" id="type4" value="男女装" /><label for="type4">男女装</label>
+        </div>
+
+        <label class="form-li form-radio">
+			<span data-text='' id="form-styles">风格/STYLE</span>
+		</label>
+
+        <div class="form-li-radio">
+
+            <input type="radio" name="form-style" id="style1" value="复古" /><label for="style1">复古</label>
+            <input type="radio" name="form-style" id="style2" value="文艺" /><label for="style2">文艺</label>
+            <input type="radio" name="form-style" id="style3" value="甜美" /><label for="style3">甜美</label>
+            <input type="radio" name="form-style" id="style4" value="小清新" /><label for="style4">小清新</label>
+            <input type="radio" name="form-style" id="style5" value="森女" /><label for="style5">森女</label>
+
+            <input type="radio" name="form-style" id="style6" value="日系" /><label for="style6">日系</label>
+            <input type="radio" name="form-style" id="style7" value="韩版" /><label for="style7">韩版</label>
+            <input type="radio" name="form-style" id="style8" value="嘻哈" /><label for="style8">嘻哈</label>
+            <input type="radio" name="form-style" id="style9" value="朋克" /><label for="style9">朋克</label>
+            <input type="radio" name="form-style" id="style10" value="街头" /><label for="style10">街头</label>
+
+            <input type="radio" name="form-style" id="style11" value="简约" /><label for="style11">简约</label>
+            <input type="radio" name="form-style" id="style12" value="欧美" /><label for="style12">欧美</label>
+            <input type="radio" name="form-style" id="style13" value="通勤" /><label for="style13">通勤</label>
+            <input type="radio" name="form-style" id="style14" value="时尚" /><label for="style14">时尚</label>
+            <input type="radio" name="form-style" id="style15" value="学院风" /><label for="style15">学院风</label>
+
+            <input type="radio" name="form-style" id="style16" value="中性" /><label for="style16">中性</label>
+            <input type="radio" name="form-style" id="style17" value="商务" /><label for="style17">商务</label>
+            <input type="radio" name="form-style" id="style18" value="休闲" /><label for="style18">休闲</label>
+            <input type="radio" name="form-style" id="style19" value="青春流行" /><label for="style19">青春流行</label>
+            <input type="radio" name="form-style" id="style20" value="运动" /><label for="style20">运动</label>
+
+            <input type="radio" name="form-style" id="style21" value="其他" /><label for="style21">其他</label>
+
+        </div>
+
+        <div class="form-box-button" onclick="FormPost()">
+            <span>提交</span>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="form-mask"></div>
+
+<script src="./script/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./script/jquery.mCustomScrollbar.concat.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./script/jquery.bxslider.js" type="text/javascript" charset="utf-8"></script>
+<script src="./script/jquery.pin.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./script/jquery.placeholder.js" type="text/javascript" charset="utf-8"></script>
+<script src="./script/main.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?630365c127d1aa856d873ba3022bdd97";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+
+    (function() {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>

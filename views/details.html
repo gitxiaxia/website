@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+	{% include "head.html" %}
+
+	<body>
+
+		{% include "header.html" %}
+
+		<div class="main-box details-box">
+
+			<div class="details-background" style="background-image: url({{data.cover}});"></div>
+
+			<div class="details-box-center max-box">
+
+				<div class="details-left">
+					<div class="pinned">
+						<div class="title">{{data.title}}</div>
+						<div class="author">作者：{{data.author}}</div>
+						<div class="time">
+							<span class="date" id="date"></span>
+							<span class="year" id="year"></span>
+						</div>
+						<div class="share bdsharebuttonbox">
+							<a class="weixin" data-cmd="weixin" title="分享到微信"></a>
+							<a class="weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+							<a class="qq" data-cmd="sqq" title="分享到QQ好友"></a>
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="details-right">
+					<div class="info">
+						{{data.info}}
+					</div>
+					<div class="content ql-editor">
+						{% autoescape false %} {{ data.content }} {% endautoescape %}
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		{% include "footer.html" %}
+
+		<script type="text/javascript">
+			$(".pinned").pin({
+				containerSelector: ".details-box-center",
+				minWidth: 800
+			});
+
+			function formatDateTime(timeStamp) {
+				var date = new Date();
+				date.setTime(timeStamp);
+				var ms = ''
+				var y = date.getFullYear();
+				var m = date.getMonth() + 1;
+				m = m < 10 ? (m) : m;
+				var d = date.getDate();
+				d = d < 10 ? ('0' + d) : d;
+				var month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+				for(var i = 1; i <= month.length; i++) {
+					if(m == i.toString()) {
+						ms = month[i-1]
+					}
+				}
+				$('.date').html(d)
+				$('.year').html(ms + ' - ' + y)
+			};
+			formatDateTime('{{data.uploadTime}}');
+		</script>
+
+		<script>
+			window._bd_share_config = {
+				"common": {
+					"bdSnsKey": {},
+					"bdText": "",
+					"bdMini": "2",
+					"bdPic": "",
+					"bdStyle": "0",
+					"bdSize": "16"
+				},
+				"share": {}
+			};
+			with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = '/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+		</script>
+
+	</body>
+
+</html>

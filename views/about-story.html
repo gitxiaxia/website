@@ -1,0 +1,26 @@
+<div class="about-story">
+	<ul>
+		{% set lists = lists %} {% for item in lists %}
+		<li>
+			<div class="time">
+				<span>{{item.time}}</span>
+			</div>
+			<div class="box">
+				<div class="box-txt">
+					<div class="title">
+						{{item.title}}
+					</div>
+					<div class="text">
+						{{item.text}}
+					</div>
+				</div>
+			</div>
+		</li>
+		{% endfor %}
+		<li class="last">
+			<div class="time">
+				<span>16 2017 JUN</span>
+			</div>
+		</li>
+	</ul>
+</div>

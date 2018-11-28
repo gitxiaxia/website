@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+{% include "head.html" %}
+
+<body>
+
+    {% include "header.html" %}
+
+    <div class="main-box">
+        <div class="about-banner">
+            {% if labelId == '1' %}
+            <div class="box" style="background-image: url(https://donghui2017.oss-cn-shenzhen.aliyuncs.com/web/about-values.jpg);">
+                <div class="box-center">
+                    <div class="title">OUR VALUES</div>
+                    <div class="text">我们的价值观</div>
+                </div>
+            </div>
+            {% endif %} {% if labelId == '2' %}
+            <div class="box" style="background-image: url(https://donghui2017.oss-cn-shenzhen.aliyuncs.com/web/about-story.jpg);">
+                <div class="box-center">
+                    <div class="title">Y PLATFORM STORY</div>
+                    <div class="text">异平台的故事</div>
+                </div>
+            </div>
+            {% endif %} {% if labelId == '3' %}
+            <div class="box" style="background-image: url(https://donghui2017.oss-cn-shenzhen.aliyuncs.com/web/about-join.jpg);">
+                <div class="box-center">
+                    <div class="title">JOIN US</div>
+                    <div class="text">加入我们</div>
+                </div>
+            </div>
+            {% endif %} {% if labelId == '4' %}
+            <div class="box" style="background-image: url(https://donghui2017.oss-cn-shenzhen.aliyuncs.com/web/about-contact.jpg);">
+                <div class="box-center">
+                    <div class="title">CONTACT US</div>
+                    <div class="text">联系我们</div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="about-box max-box">
+
+            <div class="about-box-left">
+
+                <div class="list-label-list pinned">
+
+                    <div class="labels {% if labelId == '1' %}active{% endif %}" onclick="About('aboutValues','0')">
+                        <span>我们的价值观</span>
+                    </div>
+
+                    <div class="labels {% if labelId == '2' %}active{% endif %}" onclick="About('aboutStory','1')">
+                        <span>异平台的故事</span>
+                    </div>
+
+                    <div class="labels {% if labelId == '3' %}active{% endif %}" onclick="About('aboutJoin','2')">
+                        <span>加入我们</span>
+                    </div>
+
+                    <div class="labels {% if labelId == '4' %}active{% endif %}" onclick="About('aboutContact','3')">
+                        <span>联系我们</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="about-box-right">
+                {% if labelId == '1' %} {% include "about-values.html" %} {% endif %} {% if labelId == '2' %} {% include "about-story.html" %} {% endif %} {% if labelId == '3' %} {% include "about-join.html" %} {% endif %} {% if labelId == '4' %} {% include "about-contact.html"
+                %} {% endif %}
+            </div>
+
+        </div>
+
+    </div>
+
+    {% include "footer.html" %}
+
+    <script type="text/javascript">
+        // $(".pinned").pin({
+        //     containerSelector: ".about-box",
+        //     // minWidth: 800
+        // });
+
+        function About(key, index) {
+            $('.labels').removeClass('active');
+            $('.list-label-list .labels').eq(index).addClass('active');
+            $('.list-right ul').html('')
+            $.get('/' + key + '',
+                function(data, status) {
+                    $('.about-box-right').html(data);
+                    if (index == '0') {
+                        $('.about-banner .box').css('background-image', 'url(https://donghui2017.oss-cn-shenzhen.aliyuncs.com/web/about-values.jpg)');
+                        $('.about-banner .box .title').html('OUR VALUES');
+                        $('.about-banner .box .text').html('我们的价值观');
+                    } else if (index == '1') {
+                        $('.about-banner .box').css('background-image', 'url(https://donghui2017.oss-cn-shenzhen.aliyuncs.com/web/about-story.jpg)');
+                        $('.about-banner .box .title').html('Y PLATFORM STORY');
+                        $('.about-banner .box .text').html('异平台的故事');
+                    } else if (index == '2') {
+                        $('.about-banner .box').css('background-image', 'url(https://donghui2017.oss-cn-shenzhen.aliyuncs.com/web/about-join.jpg)');
+                        $('.about-banner .box .title').html('JOIN US');
+                        $('.about-banner .box .text').html('加入我们');
+                    } else if (index == '3') {
+                        $('.about-banner .box').css('background-image', 'url(https://donghui2017.oss-cn-shenzhen.aliyuncs.com/web/about-contact.jpg)');
+                        $('.about-banner .box .title').html('CONTACT US');
+                        $('.about-banner .box .text').html('联系我们');
+                    }
+                    $(".pinned").pin({
+                        containerSelector: ".about-box",
+                        minWidth: 800
+                    });
+                    $('html,body').animate({
+                        scrollTop: 0
+                    }, 500);
+                });
+        }
+    </script>
+
+</body>
+
+</html>

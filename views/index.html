@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+{% include "head.html" %}
+
+<body>
+
+    {% include "header.html" %}
+
+    <div class="main-box">
+
+        <div class="IndexBanner">
+            <div class="index-banner">
+                {% set banner = banner %} {% for item in banner %}
+                <div class="slide">
+                    <a href="{{item.url}}" title="{{item.title}}" target="_blank">
+                        <img src="{{item.imgs}}?x-oss-process=image/resize,m_fill,h_600,w_1920,limit_0" alt="{{item.title}}" title="{{item.title}}">
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="index-box-1 index-boxs">
+            <div class="index-top-box">
+                <div class="img">
+                    <img src="../images/index-ioc1.png" />
+                </div>
+                <div class="text">设计师的平台</div>
+                <div class="text2">专注原创服装的设计</div>
+            </div>
+            <div class="index-box1 max-box">
+                <div class="img-box">
+                    <img src="../images/index-1.png" />
+                </div>
+                <div class="txt-box">
+                    <p>异原创成立于2017年，是一个专注原创服饰的平台。<br>有感于网购环境鱼龙混杂，异原创揭竿起“异”，决心用原创来定义流行。</p>
+                    <p>这个时代每个人都想成为与众不同的人，与众不同不仅在于头脑里，更体现在衣服上。<br>你的不同不在商场那一排排悬挂物里，我们坚持认为被小心设计的那一件才属于你。</p>
+                    <p>一个只卖原创服装的APP为什么重要？<br>设计师为什么要在“异”上兜售他们的灵感？</p>
+                    <p>不过是在明与暗，远与近，人群与独处的时候。<br>“异”想要给你一身好衣服，给你一个好印象。</p>
+                    <p>仅此而已。</p>
+                </div>
+            </div>
+            <a href="/features" class="index-button" style="display:none">
+                <span>查看异平台更多功能</span>
+            </a>
+        </div>
+
+        <div class="index-box-2 index-boxs">
+
+            <div class="index-top-box">
+                <div class="img">
+                    <img src="../images/index-ioc2.png" />
+                </div>
+                <div class="text">不拒绝每个设计师的可能</div>
+                <div class="text2">总有新锐设计师带着好想法在异原创扎根</div>
+            </div>
+            <div class="index-box2 max-box">
+                <div class="cover">
+                    <img src="{{data.DesignerCover}}" title="{{data.DesignerName}}" alt="{{data.DesignerName}}" />
+                </div>
+                <div class="name">{{data.DesignerName}}</div>
+                <div class="style">{{data.DesignerStyle}}</div>
+                <div class="hh"></div>
+                <div class="info">
+                    {% autoescape false %} {{ data.DesignerInfo }} {% endautoescape %}
+                </div>
+            </div>
+            <a href="/designer" class="index-button">
+                <span>查看其它入驻的设计师</span>
+            </a>
+
+            <div class="background" style="background-image: url({{data.DesignerCover}});"></div>
+        </div>
+
+        <div class="index-box-3 index-boxs">
+            <div class="index-top-box">
+                <div class="img">
+                    <img src="../images/index-ioc3.png" />
+                </div>
+                <div class="text">每日新资讯</div>
+                <div class="text2">了解关于服装那点儿事</div>
+            </div>
+            <div class="index-box3 max-box">
+                {% set recommend = recommend %} {% for item in recommend %}
+                <div class="index-new-list">
+                    <div class="label">{{item.labelName}}</div>
+                    <div class="new-top">
+                        <div class="img">
+                            <a title="{{item.recommend.title}}" href="{% if item.recommend.url !== '' %}{{item.recommend.url}}{% else %}/details?id={{item.recommend.id}}{% endif %}" {% if item.recommend.url !=='' %}target="_blank" {% endif %}>
+                                <img src="{{item.recommend.cover}}?x-oss-process=image/resize,m_fill,h_200,w_300,limit_0" alt="{{item.recommend.title}}" title="{{item.recommend.title}}" />
+                            </a>
+                        </div>
+                        <div class="title">
+                            <span>
+									<a title="{{item.recommend.title}}" href="{% if item.recommend.url !== '' %}{{item.recommend.url}}{% else %}/details?id={{item.recommend.id}}{% endif %}" {% if item.recommend.url !=='' %}target="_blank" {% endif %}>
+										{{item.recommend.title}}
+									</a>
+								</span>
+                            <a class="more" href="/list?Id={{item.id}}" title="{{item.labelName}}">更多</a>
+                        </div>
+                        <div class="info">
+                            <a title="{{item.recommend.title}}" href="{% if item.recommend.url !== '' %}{{item.recommend.url}}{% else %}/details?id={{item.recommend.id}}{% endif %}" {% if item.recommend.url !=='' %}target="_blank" {% endif %}>
+									{{item.recommend.info}}
+								</a>
+                        </div>
+                    </div>
+                    <div class="new-list">
+                        {% set news = item.list %} {% for item in news %}
+                        <p>
+                            <a title="{{item.title}}" href="/details?id={{item.id}}">{{item.title}}</a>
+                        </p>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+
+    {% include "footer.html" %}
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.index-banner').bxSlider({
+                auto: true,
+                autoControls: true,
+                minSlides: 1,
+                maxSlides: 1
+            });
+        });
+    </script>
+</body>
+
+</html>

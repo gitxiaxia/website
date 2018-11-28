@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+{% include "head.html" %}
+
+<body>
+
+    {% include "header.html" %}
+
+    <div class="main-box">
+
+        <div class="designer-box">
+
+            <div class="designer-top">
+                <div class="img">
+                    <img src="./images/designer-1.png" />
+                </div>
+                <div class="text">
+                    总有新锐设计师带着好想法在异原创扎根
+                </div>
+            </div>
+
+            <div class="max-box" style="padding-bottom: 2em;">
+                <div class="designer-card">
+                    {% set list = list %} {% for item in list %}
+                    <div class="card-{{loop.index}} cards">
+                        <div class="container">
+                            <div class="front" style="background-image: url({{item.cover}});">
+                                <div class="inner">
+                                    <p class="name">{{item.name}}</p>
+                                    <p class="style">{{item.style}}</p>
+                                </div>
+                            </div>
+                            <div class="back">
+                                <div class="inner2">
+                                    <p class="info">{{item.info}}</p>
+                                </div>
+                                <div class="img" style="background-image: url({{item.cover}});"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="index-button designer-button" onclick="ToForm()">
+                <span>点击入驻</span>
+            </div>
+        </div>
+
+        {% include "footer.html" %}
+
+        <script type="text/javascript">
+            function randomSort(a, b) {
+                return Math.random() > 0.5 ? -1 : 1;
+            }
+
+            function UrlSearch() {
+                var name, value;
+                var str = location.href;
+                var num = str.indexOf("?");
+                str = str.substr(num + 1);
+                var arr = str.split("&");
+                for (var i = 0; i < arr.length; i++) {
+                    num = arr[i].indexOf("=");
+                    if (num > 0) {
+                        ToForm();
+                    }
+                }
+            }
+            UrlSearch();
+            $(window).load(function() {
+                var arr = [0, 1, 2, 3, 4, 5];
+                var list = arr.sort(randomSort);
+                for (var i = 0; i < list.length; i++) {
+                    $('.designer-card .cards').eq(list[i]).find('.front').delay(i * 300).animate({
+                        opacity: 1
+                    });
+                }
+            })
+        </script>
+
+    </div>
+
+</body>
+
+</html>
